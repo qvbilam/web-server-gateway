@@ -1,0 +1,39 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: qvbilam-gateway
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - qvbilam-gateway
+  http:
+    # user
+    - match:
+        - uri:
+            prefix: /user
+        - uri:
+            prefix: /account
+      route:
+        - destination:
+            port:
+              number: 9701
+            host: user-web-server
+    # message
+    - match:
+        - uri:
+            prefix: /message
+      route:
+        - destination:
+            port:
+              number: 9704
+            host: message-web-server
+    # contact
+    - match:
+        - uri:
+            prefix: /contact
+      route:
+        - destination:
+            port:
+              number: 9705
+            host: contact-web-server
