@@ -12,13 +12,19 @@ spec:
     - match:
         - uri:
             prefix: /user
-        - uri:
-            prefix: /account
       route:
         - destination:
             port:
               number: 9701
             host: user-web-server
+            subset: v1.0
+          weight: 75
+        - destination:
+            port:
+              number: 9701
+            host: user-web-server
+            subset: v1.1
+          weight: 25
     # message
     - match:
         - uri:
