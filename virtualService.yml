@@ -17,13 +17,13 @@ spec:
             port:
               number: 9701
             host: user-web-server
-            subset: v1.0
+            subset: v1
           weight: 75
         - destination:
             port:
               number: 9701
             host: user-web-server
-            subset: v1.1
+            subset: v1-last
           weight: 25
     # message
     - match:
