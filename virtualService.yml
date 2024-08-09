@@ -8,7 +8,20 @@ spec:
   gateways:
     - qvbilam-gateway
   http:
-    # user
+    # user v2
+    - match:
+        - uri:
+            prefix: /user
+          headers:
+            X-App-Version:
+              prefix: "2"
+      route:
+        - destination:
+            port:
+              number: 9701
+            host: user-web-server
+            subset: v2
+    # user v1
     - match:
         - uri:
             prefix: /user
@@ -18,13 +31,7 @@ spec:
               number: 9701
             host: user-web-server
             subset: v1
-          weight: 75
-        - destination:
-            port:
-              number: 9701
-            host: user-web-server
-            subset: v1-last
-          weight: 25
+
     # message
     - match:
         - uri:
