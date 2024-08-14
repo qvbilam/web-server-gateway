@@ -82,7 +82,7 @@ spec:
   ports:
     - number: 6831
       name: jaeger
-      protocol: TCP
+      protocol: UDP
   location: MESH_EXTERNAL
   resolution: DNS
 
